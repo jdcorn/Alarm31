@@ -9,6 +9,13 @@
 import UIKit
 
 class SwitchTableViewCell: UITableViewCell {
+    
+    // Properties
+    var alarm: Alarm? {
+        didSet {
+            updateViews()
+        }
+    }
 
     // Outlets
     @IBOutlet weak var timeLabel: UILabel!
@@ -17,5 +24,14 @@ class SwitchTableViewCell: UITableViewCell {
     
     // Actions
     @IBAction func switchValueChanged(_ sender: Any) {
+    }
+    
+    // Functions
+    func updateViews() {
+        if let alarm = alarm {
+            timeLabel.text = alarm.fireTimeAsString
+            nameLabel.text = alarm.name
+            alarmSwitch.isOn.toggle()
+        }
     }
 }
