@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol SwitchTableViewCellDelegate: class {
+    func switchCellSwitchValueChanged(cell: SwitchTableViewCell)
+}
+
 class SwitchTableViewCell: UITableViewCell {
     
     // Properties
+    weak var delegate: SwitchTableViewCellDelegate?
     var alarm: Alarm? {
         didSet {
             updateViews()
@@ -24,6 +29,7 @@ class SwitchTableViewCell: UITableViewCell {
     
     // Actions
     @IBAction func switchValueChanged(_ sender: Any) {
+        delegate?.switchCellSwitchValueChanged(cell: self)
     }
     
     // Functions

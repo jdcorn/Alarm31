@@ -9,6 +9,16 @@
 import UIKit
 
 class AlarmDetailTableViewController: UITableViewController {
+    
+    // Properties
+    var alarmLanding: Alarm? {
+        didSet {
+            updateViews()
+            guard let enabled = alarmLanding?.enabled else {return}
+            alarmIsOn = enabled
+        }
+    }
+    var alarmIsOn: Bool = true
 
     // Outlets
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -17,11 +27,32 @@ class AlarmDetailTableViewController: UITableViewController {
     
     // Actions
     @IBAction func enableButtonTapped(_ sender: Any) {
+        guard let alarm = alarmLanding else {return}
+        AlarmController.shared.toggleEnabled(for: alarm)
     }
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let name = nameLabel.text, name != "" else {return}
+        if let alarm = alarmLanding {
+            let updatedDate = datePicker.date
+            AlarmController.shared.updateAlarm(alarm: alarm, fireDate: updatedDate, name: name, enabled: alarmIsOn)
+        } else {
+            AlarmController.shared.addAlarm(fireDate: datePicker.date, name: name, enabled: alarmIsOn)
+        }
+        navigationController?.popViewController(animated: true)
     }
     
-    
-    
-    
+    // Functions
+    func updateViews() {
+        if let alarm = alarmLanding {
+            loadViewIfNeeded()
+            datePicker.date = alarm.fireDate
+            nameLabel.text = alarm.name
+            if alarm.enabled {
+                enableButton.setTitle("Disable", for: .normal)
+                enableButton.backgroundColor = .red
+                enableButton.setTitleColor(.white, for: .normal)
+            }
+        }
+    }
 }
