@@ -21,10 +21,9 @@ class AlarmController {
 //    }()
     
     // MARK: - CRUD Functions
-    func addAlarm(fireDate: Date, name: String, enabled: Bool) -> Alarm {
+    func addAlarm(fireDate: Date, name: String, enabled: Bool) {
         let alarm = Alarm(fireDate: fireDate, name: name, enabled: enabled)
         alarms.append(alarm)
-        return alarm
     }
     
     func updateAlarm(alarm: Alarm, fireDate: Date, name: String, enabled: Bool) {

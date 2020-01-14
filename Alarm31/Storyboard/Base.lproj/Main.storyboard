@@ -151,7 +151,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zH-06-3Cn">
                                                     <rect key="frame" x="20" y="20" width="374" height="4"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" title="Enable"/>
                                                     <connections>
                                                         <action selector="enableButtonTapped:" destination="YFd-jf-fPX" eventType="touchUpInside" id="wAf-Tx-8BE"/>
                                                     </connections>

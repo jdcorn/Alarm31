@@ -30,6 +30,7 @@ class AlarmListTableViewController: UITableViewController {
         
         let alarm = AlarmController.shared.alarms[indexPath.row]
         cell.alarm = alarm
+        cell.updateViews()
         cell.delegate = self
         
         return cell

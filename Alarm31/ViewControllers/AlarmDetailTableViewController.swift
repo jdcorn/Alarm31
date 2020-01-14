@@ -18,12 +18,17 @@ class AlarmDetailTableViewController: UITableViewController {
             alarmIsOn = enabled
         }
     }
-    var alarmIsOn: Bool = true
+    var alarmIsOn = true
 
     // Outlets
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var enableButton: UIButton!
+    
+    // View lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     // Actions
     @IBAction func enableButtonTapped(_ sender: Any) {
@@ -44,15 +49,16 @@ class AlarmDetailTableViewController: UITableViewController {
     
     // Functions
     func updateViews() {
-        if let alarm = alarmLanding {
-            loadViewIfNeeded()
-            datePicker.date = alarm.fireDate
-            nameLabel.text = alarm.name
-            if alarm.enabled {
-                enableButton.setTitle("Disable", for: .normal)
-                enableButton.backgroundColor = .red
-                enableButton.setTitleColor(.white, for: .normal)
-            }
+        loadViewIfNeeded()
+        enableButton.layer.cornerRadius = 20
+        guard let alarm = alarmLanding else {return}
+        datePicker.date = alarm.fireDate
+        nameLabel.text = alarm.name
+        if alarm.enabled {
+            enableButton.setTitle("Disable", for: .normal)
+            enableButton.backgroundColor = .red
+            enableButton.setTitleColor(.white, for: .normal)
         }
+        
     }
 }
