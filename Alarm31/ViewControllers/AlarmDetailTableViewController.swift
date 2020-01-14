@@ -34,6 +34,15 @@ class AlarmDetailTableViewController: UITableViewController {
     @IBAction func enableButtonTapped(_ sender: Any) {
         guard let alarm = alarmLanding else {return}
         AlarmController.shared.toggleEnabled(for: alarm)
+              if alarmIsOn == true {
+                  alarmIsOn = false
+                  enableButton.setTitle("Enable", for: .normal)
+                AlarmController.shared.scheduleUserNotification(for: alarm)
+              } else {
+                  alarmIsOn = true
+                  enableButton.setTitle("Disable", for: .normal)
+                  AlarmController.shared.cancelUserNotifications(for: alarm)
+              }
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {

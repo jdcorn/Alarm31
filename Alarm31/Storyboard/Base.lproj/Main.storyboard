@@ -62,7 +62,7 @@
                                     <outlet property="alarmSwitch" destination="hg1-dm-ht2" id="Khv-Y9-09B"/>
                                     <outlet property="nameLabel" destination="dzU-EP-6rg" id="2zp-fY-3cF"/>
                                     <outlet property="timeLabel" destination="pWb-wF-Bz4" id="QPd-Wo-Liw"/>
-                                    <segue destination="YFd-jf-fPX" kind="show" id="jMq-7p-W2k"/>
+                                    <segue destination="YFd-jf-fPX" kind="show" identifier="toAlarmDetail" id="jMq-7p-W2k"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
