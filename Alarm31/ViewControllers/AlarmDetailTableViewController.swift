@@ -50,7 +50,6 @@ class AlarmDetailTableViewController: UITableViewController {
     // Functions
     func updateViews() {
         loadViewIfNeeded()
-        enableButton.layer.cornerRadius = 20
         guard let alarm = alarmLanding else {return}
         datePicker.date = alarm.fireDate
         nameLabel.text = alarm.name
@@ -59,6 +58,5 @@ class AlarmDetailTableViewController: UITableViewController {
             enableButton.backgroundColor = .red
             enableButton.setTitleColor(.white, for: .normal)
         }
-        
     }
 }

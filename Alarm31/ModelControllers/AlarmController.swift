@@ -38,6 +38,6 @@ class AlarmController {
     }
     
     func toggleEnabled(for alarm: Alarm) {
-        alarm.enabled.toggle()
+        alarm.enabled = !alarm.enabled
     }
 }
