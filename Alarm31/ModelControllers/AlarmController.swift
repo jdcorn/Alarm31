@@ -40,4 +40,35 @@ class AlarmController {
     func toggleEnabled(for alarm: Alarm) {
         alarm.enabled = !alarm.enabled
     }
+    
+    //  MARK: - JSONPersistence
+    func fileURL() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = paths[0]
+        let filename = "alarmSaved.json"
+        let fullURL = documentDirectory.appendingPathComponent(filename)
+        return fullURL
+    }
+
+    func saveToPersistentStore() {
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(alarms)
+            try data.write(to: fileURL())
+        } catch let error {
+            print(error)
+        }
+    }
+
+    func loadFromPersistentStore() {
+        let decoder = JSONDecoder()
+        do {
+            let data = try Data(contentsOf: fileURL())
+            let alarms = try decoder.decode([Alarm].self, from: data)
+            self.alarms = alarms
+        } catch let error {
+            print(error)
+        }
+    }
 }
+
