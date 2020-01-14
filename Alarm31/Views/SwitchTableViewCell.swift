@@ -14,25 +14,26 @@ protocol SwitchTableViewCellDelegate: class {
 
 class SwitchTableViewCell: UITableViewCell {
     
-    // Properties
-    weak var delegate: SwitchTableViewCellDelegate?
+    // MARK: - Properties
     var alarm: Alarm? {
         didSet {
             updateViews()
         }
     }
+    
+    weak var delegate: SwitchTableViewCellDelegate?
 
-    // Outlets
+    // MARK: - Outlets
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var alarmSwitch: UISwitch!
     
-    // Actions
+    // MARK: - Actions
     @IBAction func switchValueChanged(_ sender: Any) {
         delegate?.switchCellSwitchValueChanged(cell: self)
     }
     
-    // Functions
+    // MARK: - Functions
     func updateViews() {
         guard let alarm = alarm else { return }
             timeLabel.text = alarm.fireTimeAsString

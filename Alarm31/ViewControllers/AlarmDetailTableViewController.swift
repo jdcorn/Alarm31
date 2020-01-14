@@ -10,7 +10,7 @@ import UIKit
 
 class AlarmDetailTableViewController: UITableViewController {
     
-    // Properties
+    // MARK: - Properties
     var alarmLanding: Alarm? {
         didSet {
             updateViews()
@@ -20,17 +20,17 @@ class AlarmDetailTableViewController: UITableViewController {
     }
     var alarmIsOn = true
 
-    // Outlets
+    // MARK: - Outlets
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var enableButton: UIButton!
     
-    // View lifecycle
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    // Actions
+    // MARK: - Actions
     @IBAction func enableButtonTapped(_ sender: Any) {
         guard let alarm = alarmLanding else {return}
         AlarmController.shared.toggleEnabled(for: alarm)
@@ -47,7 +47,7 @@ class AlarmDetailTableViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    // Functions
+    // MARK: - Functions
     func updateViews() {
         loadViewIfNeeded()
         guard let alarm = alarmLanding else {return}

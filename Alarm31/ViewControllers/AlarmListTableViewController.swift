@@ -57,6 +57,7 @@ class AlarmListTableViewController: UITableViewController {
     }
 }
 
+    // MARK: - Protocol extension
 extension AlarmListTableViewController: SwitchTableViewCellDelegate {
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
         
